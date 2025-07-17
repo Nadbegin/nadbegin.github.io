@@ -20,23 +20,17 @@
       object-fit: cover;
       border: 4px dashed #ff6f91;
       margin-bottom: 20px;
-      z-index: 2;
-      position: relative;
     }
 
     h1 {
       font-size: 30px;
       margin: 0;
-      z-index: 2;
-      position: relative;
     }
 
     p {
       font-size: 16px;
       color: #666;
       margin-bottom: 25px;
-      z-index: 2;
-      position: relative;
     }
 
     .link {
@@ -51,8 +45,6 @@
       font-weight: bold;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: 0.3s;
-      z-index: 2;
-      position: relative;
     }
 
     .link:hover {
@@ -60,61 +52,36 @@
       transform: translateY(-2px);
     }
 
-    /* Bintang jatuh */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     .star {
-      position: fixed;
-      top: -10px;
+      position: absolute;
       width: 2px;
-      height: 80px;
-      background: white;
-      animation: fall 3s linear infinite;
-      opacity: 0.6;
-      z-index: 0;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) translateX(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(800px) translateX(200px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Gliter halus */
-    .glitter {
-      position: fixed;
-      width: 3px;
-      height: 3px;
+      height: 2px;
       background: white;
       border-radius: 50%;
-      animation: sparkle 4s linear infinite;
-      opacity: 0.3;
-      z-index: 0;
+      animation: twinkle 2s infinite;
     }
 
-    @keyframes sparkle {
-      0% {
-        transform: translateY(0);
-        opacity: 0.3;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-800px);
-        opacity: 0;
-      }
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { opacity: 0.2; }
     }
   </style>
 </head>
 <body>
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/02/audio_08a7b38c83.mp3?filename=serenity-110624.mp3" type="audio/mpeg">
-  </audio>
+  <div class="stars"></div>
 
   <img src="nad.jpeg" alt="Nadia" class="profile-pic">
 
@@ -122,26 +89,25 @@
   <p>🌸 Mahasiswi Telekomunikasi | 💻 Teknik Elektro | 💫 Since 2021</p>
 
   <a href="https://instagram.com/nadiaamaliahh.a" class="link">Instagram 💖</a>
-  <a href="https://github.com/nama_kamu" class="link">GitHub 💻</a>
+  <a href="https://github.com/Nadbegin" class="link">GitHub 💻</a>
   <a href="mailto:nadiaamaliah.a@gmail.com" class="link">Email ✉️</a>
+  <a href="#" class="link">Facebook: Nadia Amaliah Adzan</a>
+  <a href="https://www.linkedin.com/in/nadia-amaliah-adzan-314b28315/" class="link">LinkedIn 👩🏻‍💼</a>
 
-  <!-- Bintang jatuh -->
+  <audio autoplay loop hidden>
+    <source src="music.mp3" type="audio/mp3">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
   <script>
-    for (let i = 0; i < 15; i++) {
-      let star = document.createElement("div");
-      star.className = "star";
-      star.style.left = Math.random() * window.innerWidth + "px";
-      star.style.animationDelay = Math.random() * 5 + "s";
-      document.body.appendChild(star);
-    }
-
-    for (let i = 0; i < 50; i++) {
-      let glitter = document.createElement("div");
-      glitter.className = "glitter";
-      glitter.style.left = Math.random() * window.innerWidth + "px";
-      glitter.style.top = Math.random() * window.innerHeight + "px";
-      glitter.style.animationDuration = (3 + Math.random() * 2) + "s";
-      document.body.appendChild(glitter);
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      starsContainer.appendChild(star);
     }
   </script>
 
